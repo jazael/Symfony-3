@@ -1,0 +1,16 @@
+{% extends "BlogBundle::layout.html.twig" %}
+
+{% block content %}
+    <div class="col-md-2"></div>
+    <div class="col-md-8 col-lg-8">
+        <h2>Editar Entrada: {{ entry.title }}</h2>
+        {{ form_start(form, {'enctype':'multipart/form-data'} ) }}
+            Imagen: <img class="img-responsive" src="{{ asset("uploads/"~entry.image) }}" alt="{{ entry.image }}" width="150">
+            {{ form_widget(form.image) }}
+            <label>Etiquetas:</label>
+            {% set tag_clean = tags|trim(",")  %}
+            {{ form_widget(form.tags, {'value':tag_clean}) }}
+        {{ form_end(form) }}
+    </div>
+    <div class="col-md-2"></div>
+{% endblock %}
